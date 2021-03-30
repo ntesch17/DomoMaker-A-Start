@@ -24,13 +24,13 @@
   "author": "Cody Van De Mark",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7",
-    "@babel/preset-env": "^7.8.7",
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.1",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
