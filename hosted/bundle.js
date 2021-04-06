@@ -6,12 +6,12 @@ var handleDomo = function handleDomo(e) {
     width: 'hide'
   }, 350);
 
-  if ($("#domoName").val() || $("#domoAge").val() == '') {
+  if ($("#domoName").val() == '' || $("#domoAge").val() == '') {
     handleError("RAWR! All fields are required.");
     return false;
   }
 
-  sendAjax('POST', $("#domoForm").attr("action"), $("domoForm").serialize(), function () {
+  sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function () {
     loadDomosFromServer();
   });
   return false;
@@ -24,7 +24,7 @@ var DomoForm = function DomoForm(props) {
     name: "domoForm",
     action: "/maker",
     method: "POST",
-    className: "mainForm"
+    className: "domoForm"
   }, /*#__PURE__*/React.createElement("label", {
     htmlFor: "name"
   }, "Name: "), /*#__PURE__*/React.createElement("input", {
@@ -69,9 +69,9 @@ var DomoList = function DomoList(props) {
       className: "domoFace"
     }), /*#__PURE__*/React.createElement("h3", {
       className: "domoName"
-    }, " Name: ", domo.name), /*#__PURE__*/React.createElement("h3", {
+    }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
       className: "domoAge"
-    }, " Age: ", domo.age));
+    }, " Age: ", domo.age, " "));
   });
   return /*#__PURE__*/React.createElement("div", {
     className: "domoList"

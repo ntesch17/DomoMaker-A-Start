@@ -3,12 +3,12 @@ const handleDomo = (e) => {
 
     $("#domoMessage").animate({width:'hide'}, 350);
 
-    if($("#domoName").val() || $("#domoAge").val() == ''){
+    if($("#domoName").val() == '' || $("#domoAge").val() == ''){
         handleError("RAWR! All fields are required.");
         return false;
     }
 
-    sendAjax('POST', $("#domoForm").attr("action"), $("domoForm").serialize(), function() {
+    sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function() {
         loadDomosFromServer();
     });
 
@@ -23,7 +23,7 @@ const DomoForm = (props) =>{
         name="domoForm"
         action="/maker"
         method="POST"
-        className="mainForm"
+        className="domoForm"
         >
             <label htmlFor="name">Name: </label>
             <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
@@ -49,8 +49,8 @@ const DomoList = function(props){
         return (
             <div key={domo._id} className="domo">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="domoName"> Name: {domo.name}</h3>
-                <h3 className="domoAge"> Age: {domo.age}</h3>
+                <h3 className="domoName"> Name: {domo.name} </h3>
+                <h3 className="domoAge"> Age: {domo.age} </h3>
             </div>
         );
     });

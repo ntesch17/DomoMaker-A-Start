@@ -7,12 +7,12 @@ var handleLogin = function handleLogin(e) {
   }, 350);
 
   if ($("#user").val() == '' || $("#pass").val() == '') {
-    handleError("RAWR! Username and password is empty.");
+    handleError("RAWR! Username or password is empty.");
     return false;
   }
 
   console.log($("input[name=_csrf]").val());
-  sendAjax('POST', $("#loginForm").attr("action"), $("loginForm").serialize(), redirect);
+  sendAjax('POST', $("#loginForm").attr("action"), $("#loginForm").serialize(), redirect);
   return false;
 };
 
@@ -32,7 +32,7 @@ var handleSignup = function handleSignup(e) {
     return false;
   }
 
-  sendAjax('POST', $("#signupForm").attr("action"), $("signupForm").serialize(), redirect);
+  sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
   return false;
 };
 
