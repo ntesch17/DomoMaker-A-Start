@@ -10,7 +10,7 @@
   "scripts": {
     "buildLoginBundle": "babel ./client/login ./client/helper --presets @babel/preset-react --out-file ./hosted/loginBundle.js",
     "buildAppBundle": "babel ./client/app ./client/helper --presets @babel/preset-react --out-file ./hosted/bundle.js",
-    "buildApp2Bundle": "babel ./client/app ./client/helper --presets @babel/preset-react --out-file ./hosted/bundle2.js",
+    "buildApp2Bundle": "babel ./client/app2 ./client/helper --presets @babel/preset-react --out-file ./hosted/bundle2.js",
     "build": "npm run buildLoginBundle && npm run buildAppBundle && npm run buildApp2Bundle",
     "watchLoginBundle": "babel --watch ./client/helper --presets @babel/preset-react --out-file ./hosted/loginBundle.js",
     "watchAppBundle": "babel --watch ./client/app ./client/helper --presets @babel/preset-react --out-file ./hosted/bundle.js",

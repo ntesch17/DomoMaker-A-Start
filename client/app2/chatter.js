@@ -38,8 +38,8 @@ const ChatForm = (props) =>{
 const ChatList = function(props){
     if(props.chat.length === 0) {
         return (
-            <div className="domoList">
-                <h3 className="emptyDomo">No Responses Yet!</h3>
+            <div className="chatList">
+                <h3 className="emptyChat">No Responses Yet!</h3>
             </div>
         );
     }
@@ -54,7 +54,7 @@ const ChatList = function(props){
     });
 
     return (
-        <div className="domoList">
+        <div className="chatList">
             {chatNodes}
         </div>
     );
@@ -63,18 +63,18 @@ const ChatList = function(props){
 const loadChatFromServer = () => {
     sendAjax('GET', '/getChat', null, (data) => {
         ReactDOM.render(
-            <ChatList chat={data.chat} />, document.querySelector("#domos")
+            <ChatList chat={data.chat} />, document.querySelector("#chat")
         );
     });
 };
 
 const setup = function(csrf){
     ReactDOM.render(
-        <ChatForm csrf={csrf} />, document.querySelector('#makeDomo')
+        <ChatForm csrf={csrf} />, document.querySelector('#makeChat')
     );
 
     ReactDOM.render(
-        <ChatList chat={[]} />, document.querySelector('#domos'),
+        <ChatList chat={[]} />, document.querySelector('#chat'),
     );
 
     loadChatFromServer();

@@ -9,7 +9,7 @@ const chatPage = (req, res) => {
       return res.status(400).json({ error: 'An error occurred.' });
     }
 
-    return res.render('app', { csrfToken: req.csrfToken(), Chat: docs });
+    return res.render('app2', { csrfToken: req.csrfToken(), chat: docs });
   });
 };
 
@@ -47,7 +47,7 @@ const getChat = (request, response) => {
       return res.status(400).json({ error: 'An error occured.' });
     }
 
-    return res.json({ Chat: docs });
+    return res.json({ chat: docs });
   });
 };
 
