@@ -1,10 +1,12 @@
+
+
 const handleChat = (e) => {
     e.preventDefault();
 
     $("#domoMessage").animate({width:'hide'}, 350);
 
-    if($("#chatResponse").val() == ''){
-        handleError("RAWR! Chat field is required.");
+    if($("#chatResponse").val() == '' || $("#chatName").val() == ''){
+        handleError("RAWR! Chat fields are required.");
         return false;
     }
 
@@ -17,7 +19,6 @@ const handleChat = (e) => {
 
 
 const ChatForm = (props) =>{
-    console.log("hereeeee");
     return (
         <form id="chatForm" 
         onSubmit={handleChat}
@@ -29,11 +30,12 @@ const ChatForm = (props) =>{
             <label htmlFor="response">Enter a response: </label>
             <input id="chatResponse" type="text" name="response" placeholder="Response"/>
             <input type="hidden" name="_csrf" value={props.csrf} />
-            <input className="makeChatSubmit" type="submit" value="Make Chat" />
+            <input id='submit' className="makeChatSubmit" type="submit" value="Make Chat" />
 
         </form>
     );
 };
+
 
 const ChatList = function(props){
     if(props.chat.length === 0) {
@@ -48,16 +50,20 @@ const ChatList = function(props){
         return (
             <div key={chat._id} className="chat">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
+                <h3 className="chatUser"> User: {chat.user} </h3>
                 <h3 className="chatResponse"> Response: {chat.response} </h3>
             </div>
         );
+        
     });
-
+   
     return (
         <div className="chatList">
             {chatNodes}
         </div>
     );
+
+    
 };
 
 const loadChatFromServer = () => {

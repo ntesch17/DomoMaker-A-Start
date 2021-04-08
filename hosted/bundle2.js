@@ -6,8 +6,8 @@ var handleChat = function handleChat(e) {
     width: 'hide'
   }, 350);
 
-  if ($("#chatResponse").val() == '') {
-    handleError("RAWR! Chat field is required.");
+  if ($("#chatResponse").val() == '' || $("#chatName").val() == '') {
+    handleError("RAWR! Chat fields are required.");
     return false;
   }
 
@@ -18,7 +18,6 @@ var handleChat = function handleChat(e) {
 };
 
 var ChatForm = function ChatForm(props) {
-  console.log("hereeeee");
   return /*#__PURE__*/React.createElement("form", {
     id: "chatForm",
     onSubmit: handleChat,
@@ -38,6 +37,7 @@ var ChatForm = function ChatForm(props) {
     name: "_csrf",
     value: props.csrf
   }), /*#__PURE__*/React.createElement("input", {
+    id: "submit",
     className: "makeChatSubmit",
     type: "submit",
     value: "Make Chat"
@@ -62,6 +62,8 @@ var ChatList = function ChatList(props) {
       alt: "domo face",
       className: "domoFace"
     }), /*#__PURE__*/React.createElement("h3", {
+      className: "chatUser"
+    }, " User: ", chat.user, " "), /*#__PURE__*/React.createElement("h3", {
       className: "chatResponse"
     }, " Response: ", chat.response, " "));
   });

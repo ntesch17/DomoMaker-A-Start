@@ -2,6 +2,8 @@ const models = require('../models');
 
 const { Chat } = models;
 
+
+
 const chatPage = (req, res) => {
   Chat.ChatModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
@@ -53,4 +55,4 @@ const getChat = (request, response) => {
 
 module.exports.chatPage = chatPage;
 module.exports.getChat = getChat;
-module.exports.make = makeChat;
+module.exports.make = makeChat;;
