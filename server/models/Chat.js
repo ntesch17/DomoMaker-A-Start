@@ -3,31 +3,19 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const _ = require('underscore');
 
-let DomoModel = {};
+let ChatModel = {};
 
 // mongoose.Types.ObjectID is a function that
 // converts string ID to real mongo ID
 const convertID = mongoose.Types.ObjectId;
 const setName = (name) => _.escape(name).trim();
 
-const DomoSchema = new mongoose.Schema({
-  name: {
+const ChatSchema = new mongoose.Schema({
+  response: {
     type: String,
     required: true,
     trim: true,
     set: setName,
-  },
-
-  age: {
-    type: Number,
-    min: 0,
-    required: true,
-  },
-
-  rank: {
-    type: Number,
-    min: 0,
-    required: true,
   },
 
   owner: {
@@ -42,21 +30,19 @@ const DomoSchema = new mongoose.Schema({
   },
 });
 
-DomoSchema.statics.toAPI = (doc) => ({
-  name: doc.name,
-  age: doc.age,
-  rank: doc.rank,
+ChatSchema.statics.toAPI = (doc) => ({
+  response: doc.response,
 });
 
-DomoSchema.statics.findByOwner = (ownerID, callback) => {
+ChatSchema.statics.findByOwner = (ownerID, callback) => {
   const search = {
     owner: convertID(ownerID),
   };
 
-  return DomoModel.find(search).select('name age rank').lean().exec(callback);
+  return ChatModel.find(search).select('response').lean().exec(callback);
 };
 
-DomoModel = mongoose.model('Domo', DomoSchema);
+ChatModel = mongoose.model('Chat', ChatSchema);
 
-module.exports.DomoModel = DomoModel;
-module.exports.DomoSchema = DomoSchema;
+module.exports.ChatModel = ChatModel;
+module.exports.ChatSchema = ChatSchema;
