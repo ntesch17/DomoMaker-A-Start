@@ -20,13 +20,6 @@
   <section id="chat">
   </section>
 
-   {{#if dogs}}
-    <ul>
-      {{#each dogs}}
-        <li> {{this.name}} is a {{this.breed}} that is {{this.age}} years old. Was created on {{this.createdDate}}. </li>
-      {{/each}}
-    </ul>
-      {{/if}}
   <div id="domoMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box"/>
     <h3><span id="errorMessage"></span></h3><img id="domo" src="assets/img/domo.png" alt="domo"/>
   </div>
