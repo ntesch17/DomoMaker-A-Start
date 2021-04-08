@@ -1,12 +1,10 @@
 const models = require('../models');
 
 const { Chat } = models;
+const { Account } = models;
 
 const getAllChats = (req, res, callback) => {
-  Chat.ChatModel.find({}, (err, docs) => { 
-    return res.json({ chat: docs });
-
-  });
+  Chat.ChatModel.find({}, (err, docs) => res.json({ chat: docs }));
 };
 
 const chatPage = (req, res) => {
@@ -27,6 +25,7 @@ const makeChat = (req, res) => {
 
   const chatData = {
     response: req.body.response,
+    username: req.body.username,
     owner: req.session.account._id,
   };
 
@@ -60,4 +59,4 @@ const getChat = (request, response) => {
 
 module.exports.chatPage = chatPage;
 module.exports.getChat = getAllChats;
-module.exports.make = makeChat;;
+module.exports.make = makeChat;

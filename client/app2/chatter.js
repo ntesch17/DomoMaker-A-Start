@@ -10,7 +10,14 @@ const handleChat = (e) => {
         return false;
     }
 
+    $("#submits").submit(function(e) {
+        $("#username").hide();
+        $("#chatUser").hide();
+    });
+
     sendAjax('POST', $("#chatForm").attr("action"), $("#chatForm").serialize(), function() {
+        $("#username").hide();
+        $("#chatUser").hide();
         loadChatFromServer();
     });
 
@@ -27,10 +34,12 @@ const ChatForm = (props) =>{
         method="POST"
         className="chatForm"
         >
+            <label id='username' htmlFor="username">Enter a username: </label>
+            <input id="chatUser" type="text" name="username" placeholder="Enter Username"/>
             <label htmlFor="response">Enter a response: </label>
-            <input id="chatResponse" type="text" name="response" placeholder="Response"/>
+            <input id="chatResponse" type="text" name="response" placeholder="Enter Response"/>
             <input type="hidden" name="_csrf" value={props.csrf} />
-            <input id='submit' className="makeChatSubmit" type="submit" value="Make Chat" />
+            <input id='submits' className="makeChatSubmit" type="submit" value="Make Chat" />
 
         </form>
     );
@@ -38,6 +47,7 @@ const ChatForm = (props) =>{
 
 
 const ChatList = function(props){
+   
     if(props.chat.length === 0) {
         return (
             <div className="chatList">
@@ -46,17 +56,19 @@ const ChatList = function(props){
         );
     }
 
+   
+
     const chatNodes = props.chat.map(function(chat) {
         return (
             <div key={chat._id} className="chat">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="chatUser"> User: {chat.user} </h3>
+                <h3 className="chatUser"> User: {chat.username} </h3>
                 <h3 className="chatResponse"> Response: {chat.response} </h3>
             </div>
         );
         
     });
-   
+    
     return (
         <div className="chatList">
             {chatNodes}
@@ -72,6 +84,8 @@ const loadChatFromServer = () => {
             <ChatList chat={data.chat} />, document.querySelector("#chat")
         );
     });
+
+   
 };
 
 const setup = function(csrf){
@@ -84,6 +98,8 @@ const setup = function(csrf){
     );
 
     loadChatFromServer();
+
+    
 };
 
 const getToken = () => {

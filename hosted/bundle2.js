@@ -11,7 +11,13 @@ var handleChat = function handleChat(e) {
     return false;
   }
 
+  $("#submits").submit(function (e) {
+    $("#username").hide();
+    $("#chatUser").hide();
+  });
   sendAjax('POST', $("#chatForm").attr("action"), $("#chatForm").serialize(), function () {
+    $("#username").hide();
+    $("#chatUser").hide();
     loadChatFromServer();
   });
   return false;
@@ -26,18 +32,26 @@ var ChatForm = function ChatForm(props) {
     method: "POST",
     className: "chatForm"
   }, /*#__PURE__*/React.createElement("label", {
+    id: "username",
+    htmlFor: "username"
+  }, "Enter a username: "), /*#__PURE__*/React.createElement("input", {
+    id: "chatUser",
+    type: "text",
+    name: "username",
+    placeholder: "Enter Username"
+  }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "response"
   }, "Enter a response: "), /*#__PURE__*/React.createElement("input", {
     id: "chatResponse",
     type: "text",
     name: "response",
-    placeholder: "Response"
+    placeholder: "Enter Response"
   }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
   }), /*#__PURE__*/React.createElement("input", {
-    id: "submit",
+    id: "submits",
     className: "makeChatSubmit",
     type: "submit",
     value: "Make Chat"
@@ -63,7 +77,7 @@ var ChatList = function ChatList(props) {
       className: "domoFace"
     }), /*#__PURE__*/React.createElement("h3", {
       className: "chatUser"
-    }, " User: ", chat.user, " "), /*#__PURE__*/React.createElement("h3", {
+    }, " User: ", chat.username, " "), /*#__PURE__*/React.createElement("h3", {
       className: "chatResponse"
     }, " Response: ", chat.response, " "));
   });
