@@ -1,9 +1,8 @@
 const models = require('../models');
 
 const { Chat } = models;
-const { Account } = models;
 
-const getAllChats = (req, res, callback) => {
+const getAllChats = (req, res) => {
   Chat.ChatModel.find({}, (err, docs) => res.json({ chat: docs }));
 };
 
@@ -41,20 +40,6 @@ const makeChat = (req, res) => {
     return res.status(400).json({ error: 'An error occured.' });
   });
   return chatPromise;
-};
-
-const getChat = (request, response) => {
-  const req = request;
-  const res = response;
-
-  return Chat.ChatModel.findByOwner(req.session.account._id, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ error: 'An error occured.' });
-    }
-
-    return res.json({ chat: docs });
-  });
 };
 
 module.exports.chatPage = chatPage;
