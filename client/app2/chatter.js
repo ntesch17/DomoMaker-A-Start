@@ -96,8 +96,10 @@ const setup = function(csrf){
     ReactDOM.render(
         <ChatList chat={[]} />, document.querySelector('#chat'),
     );
-
-    loadChatFromServer();
+    setInterval(() => {
+        loadChatFromServer();
+      }, 100);
+   
 
     
 };

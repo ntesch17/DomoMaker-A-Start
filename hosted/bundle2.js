@@ -101,7 +101,9 @@ var setup = function setup(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(ChatList, {
     chat: []
   }), document.querySelector('#chat'));
-  loadChatFromServer();
+  setInterval(function () {
+    loadChatFromServer();
+  }, 100);
 };
 
 var getToken = function getToken() {
